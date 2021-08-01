@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 use CalculatorApp\Calculator;
 use CalculatorApp\ComplexNumber;
+use CalculatorApp\Parser;
 
 class CalculatorTest extends TestCase
 {
@@ -49,7 +50,20 @@ class CalculatorTest extends TestCase
     }
 
 
+    public function testParseAlgebraic(){
+        $parser = new Parser("12-3i");
 
+        $this->assertEquals(12,$parser->getReal());
+        $this->assertEquals(-3,$parser->getImaginary());
+    }
 
+    public function testParseTrig(){
+        $pi = pi();
+        $phi = $pi / 2;
+        $string = "2*(cos($phi)+sin($phi)*i)";
+        $parser = new Parser($string);
+        $this->assertEquals(0,$parser->getReal());
+        $this->assertEquals(2,$parser->getImaginary());
+    }
 
 }
