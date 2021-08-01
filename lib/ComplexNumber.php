@@ -36,7 +36,7 @@ class ComplexNumber
     }
 
     /**
-     * Выводим в стандартный вид 12+3i
+     * Выводим в алгебраичной форме 12+3i
      * @return string
      */
     public function getFormated(): string
@@ -60,6 +60,36 @@ class ComplexNumber
         $real = $parser->getReal();
         $imaginary = $parser->getImaginary();
         return new ComplexNumber($real,$imaginary);
+    }
+
+    /**
+     * Выводим в тригонометрической форме
+     * @return string
+     */
+    public function getTrigFormated()
+    {
+
+        //a > 0         ---> argz = arctg b/a
+        //a < 0 b>0     ---> argz = pi + arctg b/a
+        //a < 0 b < 0   ---> argz = -pi + arctg b/a
+
+        $a = $this->real;
+        $b = $this->imaginary;
+
+        if ($a == 0) {
+            $a = 0.00000000001;
+        }
+
+        if ($a > 0) {
+            $phi = atan($b / $a);
+        } elseif ($b > 0) {
+            $phi = pi() + atan($b / $a);
+        } elseif ($b < 0) {
+            $phi = atan($b / $a) - pi();
+        }
+        $radius = sqrt(($a * $a) + ($b * $b));
+        $string = " $radius * (cos($phi) + sin($phi)*i)";
+        return $string;
     }
 
 }

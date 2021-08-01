@@ -41,8 +41,11 @@ class Calculator
         }
         $symbol = $operation->getOperationSymbol();
         $string = $operation->getResult()->getFormated();
+        $stringTrig = $operation->getResult()->getTrigFormated();
         print "-----------".PHP_EOL;
         print "Z(1) ".$symbol." Z(2) = ".$string.PHP_EOL;
+        print "Тригонометрическая форма: ".$stringTrig.PHP_EOL;
         print "-----------".PHP_EOL;
+
     }
 }
