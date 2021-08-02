@@ -8,9 +8,9 @@ namespace CalculatorApp;
  */
 class ComplexNumber
 {
-    private float $real;
-    private float $imaginary;
-    private string $symbol;
+    protected float $real;
+    protected float $imaginary;
+    protected string $symbol = "i";
 
     /**
      * ComplexNumber constructor.

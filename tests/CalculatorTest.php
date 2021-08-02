@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 use CalculatorApp\Calculator;
 use CalculatorApp\ComplexNumber;
+use CalculatorApp\TrigComplexNumber;
 use CalculatorApp\Parser;
 
 class CalculatorTest extends TestCase
@@ -64,6 +65,19 @@ class CalculatorTest extends TestCase
         $parser = new Parser($string);
         $this->assertEquals(0,$parser->getReal());
         $this->assertEquals(2,$parser->getImaginary());
+    }
+
+
+    public function testTrigEqualAlgebraic(){
+        $algebraicNumber = new ComplexNumber(0,2);
+
+        $pi = pi();
+        $phi = $pi / 2;
+        $radius = 2;
+
+        $trigNumber = new TrigComplexNumber($radius,$phi);
+        $this->assertEquals($algebraicNumber->real,$trigNumber->real);
+        $this->assertEquals($algebraicNumber->imaginary,$trigNumber->imaginary);
     }
 
 }
